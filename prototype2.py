@@ -17,6 +17,7 @@ cv2.namedWindow('tracking')
 smn = 150
 smx = 255
 
+ti = [] #defined list
 total= 0
 
 with open("prototype2.txt","w") as fout:
@@ -42,6 +43,8 @@ with open("prototype2.txt","w") as fout:
 
 
         tracking = sthresh
+	
+	ti.append(total) #Append with each value of the frame
         
 
         dilation = cv2.dilate(tracking,kernel,iterations = 1)
@@ -73,13 +76,15 @@ with open("prototype2.txt","w") as fout:
         if k == 27:
             break
 
+print(ti) #print to check
 print(li)
 print(si)
-plt.scatter(si,li, label='Ball', color='k', s=23, marker='o')
+plt.scatter(si,ti, label='Ball', color='k', s=23, marker='o') #plot x vs ti 
+plt.scatter(li,ti, label='Ball', color='k', s=23, marker='o') #plot y vs ti
 plt.show()
 		    
 
-#cap.release()
+cap.release()
 
 cv2.destroyAllWindows()
 
