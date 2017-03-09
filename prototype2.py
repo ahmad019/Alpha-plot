@@ -1,5 +1,5 @@
 import cv2
-import cv2.cv as cv
+import cv2 as cv
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -30,7 +30,7 @@ with open("prototype2.txt","w") as fout:
         _, frame = cap.read()
         print("Frame")
         total = total + 1
-        print total
+        print(total)
         try:
             hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV,1)
             hue,sat,val = cv2.split(hsv)
@@ -44,14 +44,14 @@ with open("prototype2.txt","w") as fout:
 
         tracking = sthresh
 	
-	ti.append(total) #Append with each value of the frame
+        #ti.append(total) #Append with each value of the frame
         
 
         dilation = cv2.dilate(tracking,kernel,iterations = 1)
         closing = cv2.morphologyEx(dilation, cv2.MORPH_CLOSE, kernel)
         closing = cv2.GaussianBlur(closing,(5,5),0)
 
-        circles = cv2.HoughCircles(closing,cv.CV_HOUGH_GRADIENT,2,120,param1=120,param2=50,minRadius=10,maxRadius=0)
+        circles = cv2.HoughCircles(closing,cv.HOUGH_GRADIENT,2,120,param1=120,param2=50,minRadius=10,maxRadius=0)
 
 
         if circles is not None:
@@ -65,26 +65,28 @@ with open("prototype2.txt","w") as fout:
 
                     fout.write((str(circles[0][0][0])) + ", " + str(circles[0][0][1]) + "\n" )
                     print (str(circles[0][0][0])) +", "+ str(circles[0][0][1])
-                    x = str(circles[0][0][0])
-                    y = str(circles[0][0][1])
+                    x = circles[0][0][0]
+                    y = circles[0][0][1]
                     li.append(x)
                     si.append(y)
+                    ti.append(total)
 
         cv2.imshow('tracking',frame)
         
-        k = cv2.waitKey(50) & 0xFF
+        k = cv2.waitKey(5) & 0xFF
         if k == 27:
             break
+
+cv2.destroyAllWindows()
 
 print(ti) #print to check
 print(li)
 print(si)
-plt.scatter(si,ti, label='Ball', color='k', s=23, marker='o') #plot x vs ti 
-plt.scatter(li,ti, label='Ball', color='k', s=23, marker='o') #plot y vs ti
+plt.scatter(ti, si, label='Ball', color='k', s=23, marker='o') #plot x vs ti 
+plt.scatter(ti, li, label='Ball', color='r', s=23, marker='o') #plot y vs ti
 plt.show()
 		    
 
-cap.release()
+#cap.release()
 
-cv2.destroyAllWindows()
 
