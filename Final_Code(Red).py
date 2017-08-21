@@ -9,19 +9,19 @@ Created on Fri Jul 28 02:57:14 2017
 import cv2                                   
 import numpy as np                           
 import matplotlib.pyplot as plt
-#import imutils
+import imutils
 
 
 kernel = np.ones((5,5),np.uint8) 
 
-cap = cv2.VideoCapture("Test1.mp4") 
+cap = cv2.VideoCapture("test_01.mp4") 
 
 
 cv2.namedWindow('tracking')
 
 
 
-smn = 160    
+smn = 140    
 smx = 255
 
 ti = []
@@ -30,18 +30,21 @@ fram= 0
 
 with open("Final_Readings.txt","w") as fout:
 
-    li = []
-    si = []
+    xi = []
+    yi = []
     while(1):
 
         buzz = 0
         _, frame = cap.read()
         fram= fram + 1
         print("Frame No:",fram)
+        
+#        if frame is None:
+ #           break
 
-        #frame = imutils.resize(frame, width=600)
-	
+  	
         try:
+            frame = imutils.resize(frame, width=600)
             hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV,1)
             hue,sat,val = cv2.split(hsv)
         except Exception:
@@ -75,18 +78,21 @@ with open("Final_Readings.txt","w") as fout:
                     buzz = 1
                    
 
-                    fout.write((str(circles[0][0][0])) + ", " + str(circles[0][0][1]) + "\n" )
+#                    fout.write((str(circles[0][0][0])) + ", " + str(circles[0][0][1]) + "\n" )
                     #print (str(circles[0][0][0]).format(circles[0][0][1]))
-                    x = [str(circles[0][0][0])]
-                    y = [str(circles[0][0][1])]
+                    x = float(circles[0][0][0])
+                    y = float(circles[0][0][1])
                     
                     
                     total = total + 1
-                    ti.append(total*2)
+                    #ti.append(total*2)
+                    ti.append(fram)
+                    
+                    fout.write("{},{},{}\n".format(x, y, fram))
                     print('Detection no', total, 'at',(str(circles[0][0][0]), str(circles[0][0][1])) )
                     
-                    li.append(x)
-                    si.append(y)
+                    xi.append(x)
+                    yi.append(y)
                     
                     
 
@@ -99,14 +105,17 @@ with open("Final_Readings.txt","w") as fout:
 print('total detections', total)
 
 
-#print(li)
-#print(si)
+#print(xi)
+#print(yi)
 
-#plt.plot(ti,si, 'r', label='Ball', linewidth=1)  #uncomment to plot 
-plt.plot(ti,li, 'g', label='Ball', linewidth=1)  #  straight graph
+plt.plot(ti,yi, 'r', label='Ball', linewidth=1)  #uncomment to plot 
+plt.plot(ti,xi, 'g', label='Ball', linewidth=1)  #  straight graph
 
-#plt.scatter(ti, li, c='r')  #scatter plot
-#plt.scatter(ti, si, c='b')  # of x and y
+#plt.scatter(ti, xi, c='r')  #scatter plot
+#plt.scatter(ti, yi, c='b')  # of x and y
+
+plt.scatter(xi, yi, c='r')
+#plt.plot(yi,xi, 'r')
 
 
 plt.title('Ball motion')
