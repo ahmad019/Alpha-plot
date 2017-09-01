@@ -44,7 +44,7 @@ with open("Final_Readings.txt","w") as fout:
 
   	
         try:
-            frame = imutils.resize(frame, width=600)
+            frame = imutils.resize(frame, width=600, height=400)
             hsv = cv2.cvtColor(frame,cv2.COLOR_BGR2HSV,1)
             hue,sat,val = cv2.split(hsv)
         except Exception:
@@ -82,17 +82,18 @@ with open("Final_Readings.txt","w") as fout:
                     #print (str(circles[0][0][0]).format(circles[0][0][1]))
                     x = float(circles[0][0][0])
                     y = float(circles[0][0][1])
+                    ya = 400 - y
                     
                     
                     total = total + 1
                     #ti.append(total*2)
                     ti.append(fram)
                     
-                    fout.write("{},{},{}\n".format(x, y, fram))
-                    print('Detection no', total, 'at',(str(circles[0][0][0]), str(circles[0][0][1])) )
+                    fout.write("{},{},{}\n".format(x, 400-y, fram))
+                    print('Detection no', total, 'at',(float(circles[0][0][0]), float(circles[0][0][1])) )
                     
                     xi.append(x)
-                    yi.append(y)
+                    yi.append(ya)
                     
                     
 
@@ -105,16 +106,17 @@ with open("Final_Readings.txt","w") as fout:
 print('total detections', total)
 
 
-#print(xi)
-#print(yi)
 
-plt.plot(ti,yi, 'r', label='Ball', linewidth=1)  #uncomment to plot 
-plt.plot(ti,xi, 'g', label='Ball', linewidth=1)  #  straight graph
+#print(xi)
+print(yi)
+
+#plt.plot(ti,yi, 'r', label='Ball', linewidth=1)  #uncomment to plot 
+#plt.plot(ti,xi, 'g', label='Ball', linewidth=1)  #  straight graph
 
 #plt.scatter(ti, xi, c='r')  #scatter plot
-#plt.scatter(ti, yi, c='b')  # of x and y
+plt.scatter(ti, yi, c='b')  # of x and y
 
-plt.scatter(xi, yi, c='r')
+#plt.scatter(xi, yi, c='r')
 #plt.plot(yi,xi, 'r')
 
 
