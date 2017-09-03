@@ -83,23 +83,24 @@ with open("Final_Readings.txt","w") as fout:
                     x = float(circles[0][0][0])
                     y = float(circles[0][0][1])
                     ya = 400 - y
+                    xa = 600 - x
                     
                     
                     total = total + 1
                     #ti.append(total*2)
                     ti.append(fram)
                     
-                    fout.write("{},{},{}\n".format(x, 400-y, fram))
+                    fout.write("{},{},{}\n".format(600-x, 400-y, fram))
                     print('Detection no', total, 'at',(float(circles[0][0][0]), float(circles[0][0][1])) )
                     
-                    xi.append(x)
+                    xi.append(xa)
                     yi.append(ya)
                     
                     
 
         cv2.imshow('tracking',frame)
         
-        k = cv2.waitKey(1) & 0xFF
+        k = cv2.waitKey(0) & 0xFF
         if k == 27:
             break
 
@@ -107,7 +108,7 @@ print('total detections', total)
 
 
 
-#print(xi)
+print(xi)
 print(yi)
 
 #plt.plot(ti,yi, 'r', label='Ball', linewidth=1)  #uncomment to plot 

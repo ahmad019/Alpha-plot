@@ -46,17 +46,30 @@ with open("Final_Readings.txt","r") as fout:
             
 
 
+
+
+    
 dist = finddisplacement(yi,ti) 
-vel = findvelocity(dist,ti)
+vel = findvelocity(yi,ti)
 accel = findacceleration(vel,ti)
-print(ti)
-#plt.plot( ti[0:45],dist)
-#plt.plot(ti[0:45], vel)
-plt.plot(ti[0:44], accel)
+    
+with open("cal_values.txt", "w") as fout:
+    for i in range(np.shape(dist)[0]):
+        fout.write("{},{},{}\n".format(dist, vel, accel))
+        break
+
+
+
+plt.plot(ti[0:45],dist, c='g')
+plt.title('Displacement to time graph')
 plt.show()
-#for i in range(np.shape(x)[0]-1):
- #   xd = math.sqrt()
-#float(yi.strip().strip("'"))
+plt.plot(ti[0:46], vel, c='r')
+plt.title('Velocity-Time graph')
+plt.show()
+plt.plot(ti[0:45], accel, c='b')
+plt.title('Acceleration-Time graph')
+plt.show()
+
 
 plt.scatter(ti,yi, c='r') #label='Ball', linewidth=1)  #uncomment to plot 
 #plt.plot(ti,xi, 'g', label='Ball', linewidth=1)  #  straight graph
