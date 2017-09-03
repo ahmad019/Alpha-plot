@@ -28,7 +28,7 @@ ti = []
 total= 0
 fram= 0
 
-with open("Final_Readings.txt","w") as fout:
+with open("Final_Readings.csv","w") as fout:
 
     xi = []
     yi = []
