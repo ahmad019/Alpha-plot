@@ -10,10 +10,11 @@ Code for the ball motion tracking project
 <h2>Elements</h2>
 
 <p>The following are the elements for this project, the video and code is set to work, but if anyone want to run their own video should know this:  
-</p>
-> The camera used to make the video had 240fps
-> This code only detects red colored ball (can be easily modified)
-> The conversion from pixel to cm is totally based on the scale of the video
+</p>  
+
+> The camera used to make the video had 240fps  
+> This code only detects red colored ball (can be easily modified)  
+> The conversion from pixel to cm is totally based on the scale of the video  
 
 
 <h2>Calculations</h2>
