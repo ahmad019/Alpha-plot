@@ -18,8 +18,9 @@ Code for the ball motion tracking project
 <h1>Calculations</h1>
 
 <p>
->Diameter of the ball used = 6.8cm
->Diameter in pixels = 32px
+> Diameter of the ball used = 6.8cm  
+
+> Diameter in pixels = 32px  
 
 Which gives us,
 > 1 pixel = 0.212 cm
@@ -28,15 +29,15 @@ Projectile equation used:
 
 ![equation](http://www.mathwords.com/p/p_assets/p108.gif)
 
-27 px - (4.32 x 10^3)t -  (4.05 x 10^-2)t^2
+> 27 px - (4.32 x 10^3)t -  (4.05 x 10^-2)t^2
 
 <i>using regression for second degree polynomial</i>
 
-0.5(g) = -4.051 x 10^-2 px/f^2 				<i>such that; 1frame = 1/240s </i>
+> 0.5(g) = -4.051 x 10^-2 px/f^2 				<i>such that; 1frame = 1/240s </i>
 
 <b>gives</b> 
 
-g = -991.7 cm/s^2 with 1.1% uncertainity!!
+> g = -991.7 cm/s^2 with 1.1% uncertainity!!
 
 
 
