@@ -1,13 +1,13 @@
-# Alpha-plot
+<h2>Alpha-plot</h2>
 Image-processing-project//Physics 
 
 Code for the ball motion tracking project
 
-<h1>Introduction:</h1>
+<h1>Introduction</h1>
 
 <p>The aim of this project is to use computer vision technique to identify an object and detect its motion and calculating the value of 'g' using the collected data. The code of this project is written in python.</p>
 
-<h1>Elements:</h1>
+<h1>Elements</h1>
 
 <p>The following are the elements for this project, the video and code is set to work, but if anyone want to run their own video should know this:
 >The camera used to make the video had 240fps
@@ -17,7 +17,7 @@ Code for the ball motion tracking project
 
 <h1>Calculations</h1>
 
-<p>
+
 > Diameter of the ball used = 6.8cm  
 
 > Diameter in pixels = 32px  
