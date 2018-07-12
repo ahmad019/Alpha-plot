@@ -44,7 +44,7 @@ with open("Final_Readings.csv","r") as fout:
 
 
 vel = findvelocity(yi,ti)  #calling fucn to cal. Velocity
-accel = findacceleration(vel,ti)    #calling fucn to cal. Acceleration
+accel = findacceleration(vel,ti)    #calling fucn to calculate Acceleration
 
 v = ( (np.mean(vel) * 0.2125 ) * 240)
 a = ( (np.mean(accel) * 0.2125) * (240*240))
